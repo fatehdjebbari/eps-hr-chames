@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Plus, Edit, Trash2, ChevronDown, ChevronRight, Calendar, AlertCircle, X, Check } from 'lucide-react';
+import { Plus, Edit, Trash2, ChevronDown, ChevronRight, Calendar, AlertCircle, X, Check, TimerReset } from 'lucide-react';
+import { DateEditDialog } from '@/components/grades/DateEditDialog';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +15,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { mockGrades, mockBodies, mockGradeAssignments, mockPersonnel } from '@/data/mockData';
-import { Grade, Body } from '@/types/hr';
+import { Grade, Body, GradeAssignment } from '@/types/hr';
 import { toast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
 
@@ -25,6 +26,7 @@ export default function Grades() {
   const [isBodyFormOpen, setIsBodyFormOpen] = useState(false);
   const [selectedGrade, setSelectedGrade] = useState<Grade | null>(null);
   const [selectedBody, setSelectedBody] = useState<Body | null>(null);
+  const [editingAssignment, setEditingAssignment] = useState<GradeAssignment | null>(null);
   const [gradeForm, setGradeForm] = useState({ code: '', designationFr: '', designationAr: '' });
   const [bodyForm, setBodyForm] = useState({ code: '', designationFr: '', designationAr: '' });
   const [expandedGrades, setExpandedGrades] = useState<Set<string>>(new Set());
@@ -232,9 +234,13 @@ export default function Grades() {
                                         </Badge>
                                       )}
                                     </div>
-                                    <Button variant="ghost" size="sm">
-                                      <Calendar className="h-4 w-4 mr-2" />
-                                      Edit Date
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => setEditingAssignment(assignment)}
+                                    >
+                                      <span className="text-xs text-muted-foreground mr-2">Edit Date</span>
+                                      <Edit className="h-3 w-3" />
                                     </Button>
                                   </div>
                                 );
