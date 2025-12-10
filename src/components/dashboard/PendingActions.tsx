@@ -69,7 +69,7 @@ export function PendingActions() {
                     {pendingItems.map((item) => (
                         <div
                             key={item.id}
-                            className="flex items-center justify-between p-3 rounded-lg border bg-card/50 hover:bg-primary/10 cursor-pointer transition-colors group"
+                            className="flex items-center justify-between p-2 rounded-lg border bg-card/50 hover:bg-primary/10 cursor-pointer transition-colors group"
                             onClick={() => navigate(item.path)}
                         >
                             <div className="flex items-start gap-3">

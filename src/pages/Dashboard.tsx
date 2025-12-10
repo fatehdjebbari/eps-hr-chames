@@ -80,20 +80,24 @@ export default function Dashboard() {
           <QuickActions />
         </div>
 
+        {/* Actionable Items Row */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <PendingActions />
+          <AlertsPanel />
+        </div>
+
         {/* Main Content Grid */}
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Left Column (Charts - Takes 2/3 width on large screens) */}
           <div className="lg:col-span-2 space-y-6">
-            <PendingActions />
             <div className="grid gap-6 md:grid-cols-2">
               <DepartmentChart />
               <MonthlyActivityChart />
             </div>
           </div>
 
-          {/* Right Column (Alerts & Activity - Takes 1/3 width) */}
+          {/* Right Column (Activity - Takes 1/3 width) */}
           <div className="space-y-6">
-            <AlertsPanel />
             <UpcomingEvents />
             <RecentActivity />
           </div>
