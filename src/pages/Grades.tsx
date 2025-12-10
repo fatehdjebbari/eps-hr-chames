@@ -27,8 +27,8 @@ export default function Grades() {
   const [selectedGrade, setSelectedGrade] = useState<Grade | null>(null);
   const [selectedBody, setSelectedBody] = useState<Body | null>(null);
   const [editingAssignment, setEditingAssignment] = useState<GradeAssignment | null>(null);
-  const [gradeForm, setGradeForm] = useState({ code: '', designationFr: '', designationAr: '' });
-  const [bodyForm, setBodyForm] = useState({ code: '', designationFr: '', designationAr: '' });
+  const [gradeForm, setGradeForm] = useState({ code: '', designationEn: '', designationFr: '', designationAr: '' });
+  const [bodyForm, setBodyForm] = useState({ code: '', designationEn: '', designationFr: '', designationAr: '' });
   const [expandedGrades, setExpandedGrades] = useState<Set<string>>(new Set());
 
   const toggleGradeExpand = (gradeId: string) => {
@@ -51,13 +51,18 @@ export default function Grades() {
 
   const handleAddGrade = () => {
     setSelectedGrade(null);
-    setGradeForm({ code: '', designationFr: '', designationAr: '' });
+    setGradeForm({ code: '', designationEn: '', designationFr: '', designationAr: '' });
     setIsGradeFormOpen(true);
   };
 
   const handleEditGrade = (grade: Grade) => {
     setSelectedGrade(grade);
-    setGradeForm({ code: grade.code, designationFr: grade.designationFr, designationAr: grade.designationAr });
+    setGradeForm({
+      code: grade.code,
+      designationEn: grade.designationEn,
+      designationFr: grade.designationFr,
+      designationAr: grade.designationAr
+    });
     setIsGradeFormOpen(true);
   };
 
@@ -81,13 +86,18 @@ export default function Grades() {
 
   const handleAddBody = () => {
     setSelectedBody(null);
-    setBodyForm({ code: '', designationFr: '', designationAr: '' });
+    setBodyForm({ code: '', designationEn: '', designationFr: '', designationAr: '' });
     setIsBodyFormOpen(true);
   };
 
   const handleEditBody = (body: Body) => {
     setSelectedBody(body);
-    setBodyForm({ code: body.code, designationFr: body.designationFr, designationAr: body.designationAr });
+    setBodyForm({
+      code: body.code,
+      designationEn: body.designationEn,
+      designationFr: body.designationFr,
+      designationAr: body.designationAr
+    });
     setIsBodyFormOpen(true);
   };
 
